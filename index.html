@@ -40,7 +40,7 @@
         }
         h1 {
             color: #ffffff;
-            background: linear-gradient(90deg, #007bff, #0056b3);
+            background: linear-gradient(90deg, #ff4d4d, #e60000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-size: 1.8em;
@@ -53,7 +53,7 @@
             line-height: 1.5;
         }
         button {
-            background: linear-gradient(90deg, #007bff, #0056b3);
+            background: linear-gradient(90deg, #ff4d4d, #e60000);
             color: #ffffff;
             border: none;
             padding: 12px 20px;
@@ -66,25 +66,20 @@
         }
         button:hover {
             transform: translateY(-3px);
-            background: linear-gradient(90deg, #0056b3, #003f88);
+            background: linear-gradient(90deg, #e60000, #b30000);
         }
         button:active {
             transform: translateY(0);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
-        iframe {
-            display: none; /* Sembunyikan iframe untuk audio latar */
-        }
     </style>
 </head>
 <body>
-    <!-- Audio YouTube sebagai backsound -->
-    <iframe 
-        src="https://www.youtube.com/embed/zf8Vo2fomyY?autoplay=1&loop=1&playlist=zf8Vo2fomyY" 
-        frameborder="0" 
-        allow="autoplay" 
-        allowfullscreen>
-    </iframe>
+    <!-- Audio musik sebagai backsound -->
+    <audio autoplay loop>
+        <source src="bertaut.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <div class="container">
         <!-- Logo Gambar Bulat -->
