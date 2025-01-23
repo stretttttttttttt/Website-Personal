@@ -16,11 +16,25 @@
             height: 100vh;
             background: url('test.jpg') no-repeat center center fixed;
             background-size: cover;
+            position: relative; /* Untuk efek blur */
+            overflow: hidden;
+        }
+        /* Overlay dengan efek blur */
+        #blurOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(3px); /* Efek blur */
+            -webkit-backdrop-filter: blur(3px); /* Kompatibilitas WebKit */
+            z-index: 0; /* Posisi di belakang konten */
         }
         .container {
-            background-color: #2f2f2f;
+            position: relative; /* Agar konten tetap terlihat di atas overlay */
+            background-color: rgba(47, 47, 47, 0.8);
             padding: 20px 30px;
-            border-radius: 12px;
+            border-radius: 19px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
             text-align: center;
             max-width: 350px;
@@ -28,6 +42,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            z-index: 1; /* Di atas overlay */
         }
         .logo {
             width: 120px;
@@ -45,6 +60,7 @@
             -webkit-text-fill-color: transparent;
             font-size: 1.8em;
             margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4);
         }
         p {
             margin: 10px 0 20px;
@@ -57,8 +73,8 @@
             color: #ffffff;
             border: none;
             padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 10px;
+            font-size: 19px;
             font-weight: bold;
             cursor: pointer;
             transition: transform 0.2s, background 0.3s;
@@ -66,18 +82,33 @@
         }
         button:hover {
             transform: translateY(-3px);
-            background: linear-gradient(90deg, #e60000, #b30000);
+            background: linear-gradient(90deg, #ff4d4d, #e60000);
         }
         button:active {
             transform: translateY(0);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
+        #musicButton {
+            width: 400px;
+            height: 35px;
+            border-radius: 8px;
+            font-size: 15px;
+            padding: 6px 10px;
+            position: fixed;
+            left: 16px;
+            bottom: 640px;
+            background-color: #808080;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
+    <!-- Overlay untuk efek blur -->
+    <div id="blurOverlay"></div>
+
     <!-- Audio musik sebagai backsound -->
-    <audio autoplay loop>
-        <source src="bertaut.mp3" type="audio/mpeg">
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="https://github.com/stretttttttttttt/Website-Personal/raw/refs/heads/main/bertaut.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
@@ -91,8 +122,31 @@
         <!-- Teks -->
         <p>Saat ini, website sedang dalam pembaruan. Silakan klik tombol di bawah untuk melanjutkan web baru.</p>
         
-        <!-- Tombol -->
-        <button onclick="window.location.href='https://google.com'">login ulang</button>
+        <!-- Tombol login ulang -->
+        <button onclick="window.location.href='https://google.com'">registrasi</button>
     </div>
+
+    <!-- Tombol untuk On/Off Musik -->
+    <button id="musicButton">Music</button>
+
+    <script>
+        // Mendapatkan elemen audio dan tombol
+        const music = document.getElementById('backgroundMusic');
+        const musicButton = document.getElementById('musicButton');
+
+        // Fungsi untuk menyalakan/mematikan musik
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                musicButton.textContent = "Online";
+            } else {
+                music.pause();
+                musicButton.textContent = "Music";
+            }
+        }
+
+        // Menambahkan event listener untuk tombol musik
+        musicButton.addEventListener('click', toggleMusic);
+    </script>
 </body>
 </html>
